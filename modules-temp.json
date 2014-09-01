@@ -1,0 +1,22 @@
+{
+	"math": {
+		"delimiter": "$",
+		"create-script": "echo '<img src=\"'`typeset-math`'\" />'"
+	},
+	
+	"identity": {
+		"delimiter": "#",
+		"create": "lambda fmt, s: s"
+	},
+
+	"code": {
+		"delimiter": "`",
+		"create": "lambda fmt, s: '<code>{}</code>'.format(s)"
+	},
+
+	"formatty": {
+		"delimiter": "@",
+		"create": "lambda fmt, s: '<{fmt}>{}</{fmt}>'.format(s)"
+	}
+}
+
