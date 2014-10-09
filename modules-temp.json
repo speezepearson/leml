@@ -1,7 +1,7 @@
 {
 	"math": {
 		"delimiter": "$",
-		"create-script": "echo '<img src=\"'`typeset-math`'\" />'"
+		"create-script": "echo '<img style=\"max-height:1.5ex\" src=\"'`typeset-math`'\" />'"
 	},
 	
 	"identity": {
@@ -16,7 +16,7 @@
 
 	"formatty": {
 		"delimiter": "@",
-		"create": "lambda fmt, s: '<{fmt}>{}</{fmt}>'.format(s)"
+		"create": "lambda fmt, s: '[{fmt}]{s}[/{fmt}]'.format(fmt=fmt, s=s)"
 	}
 }
 
