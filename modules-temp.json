@@ -1,22 +1,32 @@
 {
 	"math": {
 		"delimiter": "$",
-		"create-script": "echo '<img style=\"max-height:1.5ex\" src=\"'`typeset-math`'\" />'"
-	},
-	
-	"identity": {
-		"delimiter": "#",
-		"create": "lambda fmt, s: s"
+		"create": {"script": "typeset-math"},
+		"embed": {
+			"txt": "(see image {input})",
+			"html": "<img style='max-height:1.5ex' src='{input}' />"
+		}
 	},
 
 	"code": {
 		"delimiter": "`",
-		"create": "lambda fmt, s: '<code>{}</code>'.format(s)"
+		"create": "<code>{input}</code>"
+	},
+
+	"comment": {
+		"open": "{--",
+		"close": "--}",
+		"create": ""
 	},
 
 	"formatty": {
 		"delimiter": "@",
-		"create": "lambda fmt, s: '[{fmt}]{s}[/{fmt}]'.format(fmt=fmt, s=s)"
+		"create": "",
+		"embed": {
+			"txt": "(format: txt)",
+			"html": "(format: html)",
+			"md": "(format: md)",
+			"tex": "(format: tex)"
+		}
 	}
 }
-

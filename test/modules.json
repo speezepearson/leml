@@ -1,0 +1,18 @@
+{
+	"angle": {
+		"delimiters": ["<", ">"],
+		"create": "angle({input})"
+	},
+	"math": {
+		"delimiters": "$",
+		"create": "math({input})"
+	},
+	"comment": {
+		"delimiters": ["{--", "--}"],
+		"create": "{input}",
+		"embed": {
+			"show-comments": "(comment: {input})",
+			"default": ""
+		}
+	}
+}

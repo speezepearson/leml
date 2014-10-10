@@ -1,14 +1,12 @@
 import unittest
 import markup
+import os
 
-test_modules = (
-	markup.Module(('<', '>'), lambda _, s: 'angle({})'.format(s)),
-	markup.Module(('$', '$'), lambda _, s: 'math({})'.format(s)),
-	markup.Module(('{--', '--}'), lambda _, s: '')
-)
+test_modules_path = os.path.join(os.path.dirname(__file__), 'modules.json')
+test_modules = markup.parse_modules_json(open(test_modules_path))
 
-def compile(string):
-	return markup.compile(test_modules, 'fmt', string)
+def compile(string, format='fmt'):
+	return markup.compile(test_modules, format, string)
 
 class TestCompile(unittest.TestCase):
 	def test_emptiness(self):
@@ -19,8 +17,9 @@ class TestCompile(unittest.TestCase):
 	def test_singletons(self):
 		self.assertEqual(compile('no delimiters'), 'no delimiters')
 		self.assertEqual(compile('<>'), 'angle()')
-		self.assertEqual(compile('$content$'), 'math(content)')
-		self.assertEqual(compile('{-- comment --}'), '')
+
+	def test_repeat(self):
+		self.assertEqual(compile('<a><b>'), 'angle(a)angle(b)')
 
 	def test_escaping(self):
 		self.assertEqual(compile(r'\<>'), r'<>')
@@ -45,5 +44,9 @@ class TestCompile(unittest.TestCase):
 	def test_nesting(self):
 		self.assertEqual(compile(r'<$>'), 'angle($)')
 		self.assertEqual(compile(r'<<>'), 'angle(<)')
+
+	def test_embedding(self):
+		self.assertEqual(compile(r'{--x--}'), '')
+		self.assertEqual(compile(r'{--x--}', 'show-comments'), '(comment: x)')
 
 unittest.main()

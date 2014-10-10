@@ -8,7 +8,7 @@ def iter_processed_chunks(modules, format, string):
 			yield content
 		else:
 			module = delimiter_pair_to_module[(open, close)]
-			yield module.create(format, content)
+			yield module.process(format, content)
 
 def compile(modules, format, string):
 	return ''.join(iter_processed_chunks(modules, format, string))
