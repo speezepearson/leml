@@ -9,11 +9,11 @@ def parse_function(json):
 	elif isinstance(json, dict):
 		if 'script' in json:
 			command = json['script']
-			def create(fmt, s):
+			def create(input):
 				# print("fmt = {!r}, s = {!r}".format(fmt, s))
 				# print("command = {}".format(command))
 				p = subprocess.Popen(command, shell=True, stdin=subprocess.PIPE, stdout=subprocess.PIPE)
-				(out, err) = p.communicate(s.encode(sys.stdout.encoding))
+				(out, err) = p.communicate(input.encode(sys.stdout.encoding))
 				# TODO: check for p.returncode != 0
 				return out.decode(sys.stdin.encoding)
 			return create

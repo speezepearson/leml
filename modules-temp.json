@@ -1,26 +1,30 @@
 {
 	"math": {
-		"delimiter": "$",
+		"delimiters": "$",
 		"create": {"script": "typeset-math"},
 		"embed": {
-			"txt": "(see image {input})",
-			"html": "<img style='max-height:1.5ex' src='{input}' />"
+			"html": "<img style='max-height:1.5ex' src='{input}' />",
+			"md": "<img style='max-height:1.5ex' src='{input}' />",
+			"default": "(see image {input})"
 		}
 	},
 
 	"code": {
-		"delimiter": "`",
-		"create": "<code>{input}</code>"
+		"delimiters": "`",
+		"create": "{input}",
+		"embed": {
+			"html": "<code>{input}</code>",
+			"md": "`` {input} ``"
+		}
 	},
 
 	"comment": {
-		"open": "{--",
-		"close": "--}",
+		"delimiters": ["{--", "--}"],
 		"create": ""
 	},
 
 	"formatty": {
-		"delimiter": "@",
+		"delimiters": ["@", ""],
 		"create": "",
 		"embed": {
 			"txt": "(format: txt)",

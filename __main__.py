@@ -11,4 +11,4 @@ args = parser.parse_args()
 
 modules = markup.parse_modules_json(open(args.module_file))
 
-print(*markup.compile(modules, args.format, sys.stdin.read()), sep='', end='')
+print(markup.compile(modules, args.format, sys.stdin.read()))
