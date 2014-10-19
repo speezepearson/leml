@@ -1,11 +1,20 @@
 {
-	"math": {
+	"inline-math": {
 		"delimiters": "$",
 		"create": {"script": "typeset-math"},
 		"embed": {
 			"html": "<img style='max-height:1.5ex' src='{input}' />",
 			"md": "<img style='max-height:1.5ex' src='{input}' />",
 			"default": "(see image {input})"
+		}
+	},
+	"block-math": {
+		"delimiters": ["\\[", "\\]"],
+		"create": {"script": "typeset-math --display"},
+		"embed": {
+			"html": "<p><img style='max-height:5ex' src='{input}' /></p>",
+			"md": "<p><img style='max-height:5ex' src='{input}' /></p>",
+			"default": "\n(see image {input})\n"
 		}
 	},
 
