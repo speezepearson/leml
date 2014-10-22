@@ -3,3 +3,7 @@ all:
 
 demo-compiled.%: demo-source.%
 	python -m markup -f $* modules.json < $^ > $@
+
+clean:
+	rm demo-compiled.*
+	rm latex-*.png
